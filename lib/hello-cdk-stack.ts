@@ -7,7 +7,11 @@ export class HelloCdkStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
 
-    new s3.Bucket(this, 'MyBucket', { versioned: true });
+    new s3.Bucket(this, 'MyBucket', {
+        versioned: true,
+        removalPolicy: cdk.RemovalPolicy.DESTROY,
+        autoDeleteObjects: true,
+    });
 
     // The code that defines your stack goes here
 
